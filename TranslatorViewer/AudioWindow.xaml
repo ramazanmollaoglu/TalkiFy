@@ -15,10 +15,26 @@
         <Grid Grid.Column="1" x:Name="PropertiesGrid">
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label>Baud Rate : </Label>
+                    <Label Width="80">Baud Rate : </Label>
                     <ComboBox x:Name="BaudRateBox" Width="200" SelectionChanged="ComboBox_SelectionChanged"></ComboBox>
                 </StackPanel>
- 
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Width="80">Input Index</Label>
+                        <TextBox x:Name="InputBox" Width="200"></TextBox>
+                        <Label Width="80">Output Index</Label>
+                        <TextBox x:Name="OutputBox" Width="170"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Width="80">Channel</Label>
+                        <TextBox x:Name="ChannelBox" Width="200"></TextBox>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel>
+                    <Button Height="20" HorizontalAlignment="Center" Width="200" Click="Button_Click">Start
+                        
+                    </Button>
+                </StackPanel>
             </StackPanel>
         </Grid>
     </Grid>

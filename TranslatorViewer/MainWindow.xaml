@@ -12,8 +12,12 @@
         ResizeMode="NoResize"
         Loaded="Window_Loaded"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <TextBlock x:Name="DisplayText"
+    <Grid >
+        <Image HorizontalAlignment="Center" Source="/Images/Back.png" 
+                   VerticalAlignment="Center">
+            
+        </Image>
+            <TextBlock x:Name="DisplayText"
                    Text="Hazırım 🟢"
                    FontSize="28"
                    Foreground="Black"

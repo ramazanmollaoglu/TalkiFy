@@ -11,7 +11,7 @@ import torch
 import win32security
 import subprocess
 import argparse
-
+import sys
 # Cihaz indexleri
 INPUT_DEVICE_INDEX = 1  # CABLE Output
 OUTPUT_DEVICE_INDEX = 10  # Huawei FreeBuds
@@ -33,6 +33,7 @@ INPUT_DEVICE_INDEX = args.input
 OUTPUT_DEVICE_INDEX = args.output
 SAMPLERATE = args.samplerate
 CHANNELS = args.channels
+sys.stdout.reconfigure(encoding='utf-8', line_buffering=True)
 # FFmpeg kontrolü
 try:
     subprocess.check_output(["ffmpeg", "-version"])
@@ -80,11 +81,11 @@ class AudioProcessor:
 
                     try:
                         result = model.transcribe(temp_path, fp16=torch.cuda.is_available())
-                        result_tr = model.transcribe(temp_path, task="translate", fp16=torch.cuda.is_available(), language="tr")
+                        #result_tr = model.transcribe(temp_path, task="translate", fp16=torch.cuda.is_available(), language="tr")
                         text = result["text"].strip()
-                        text_tr = result_tr["text"].strip()
+                        #text_tr = result_tr["text"].strip()
                         print("#eng:", text if text else "Eng Algılanmadı")
-                        print("#tr:", text_tr if text_tr else "Tr Algılanmadı")
+                        #print("#tr:", text_tr if text_tr else "Tr Algılanmadı")
                     except Exception as e:
                         print("Transkripsiyon hatası:", e)
                     finally:

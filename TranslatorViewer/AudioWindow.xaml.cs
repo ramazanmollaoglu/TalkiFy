@@ -48,5 +48,21 @@ namespace TranslatorViewer
                 debugBox.Items.Add($"{filteredOutput[i].Index}---{filteredOutput[i].Name}-{filteredOutput[i].Channels}");
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int inputIndex = Convert.ToInt32(InputBox.Text);
+                int outputIndex = Convert.ToInt32(OutputBox.Text);
+                int channelIndex = Convert.ToInt32(ChannelBox.Text);
+                int baudrate = Convert.ToInt32(BaudRateBox.SelectedItem);
+                MainWindow.instance.StartPython(inputIndex, outputIndex, baudrate, channelIndex);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please control all values");
+            }
+        }
     }
 }

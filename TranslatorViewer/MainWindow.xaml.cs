@@ -33,9 +33,10 @@ public partial class MainWindow : Window
         pythonProc.StartInfo.FileName = "python";
         pythonProc.StartInfo.Arguments = $"Translator.py --input {inputDevice} --output {outputDevice} --samplerate {samplerate} --channels {channels}";
         pythonProc.StartInfo.UseShellExecute = false;
+        pythonProc.StartInfo.StandardOutputEncoding = System.Text.Encoding.UTF8;
         pythonProc.StartInfo.RedirectStandardOutput = true;
         pythonProc.StartInfo.RedirectStandardError = true; // Hataları da yakala
-        pythonProc.StartInfo.CreateNoWindow = false;
+        pythonProc.StartInfo.CreateNoWindow = true;
         pythonProc.ErrorDataReceived += (s, e) =>
         {
             if (!string.IsNullOrWhiteSpace(e.Data))
