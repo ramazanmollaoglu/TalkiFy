@@ -1,0 +1,83 @@
+# Build output
+bin/
+obj/
+[Oo]ut/
+[Ll]og/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio specific
+.vscode/
+.vs/
+*.code-workspace
+
+# Rider IDE
+.idea/
+
+# Package management
+packages/
+*.nupkg
+*.snupkg
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Dotnet CLI
+*.deps.json
+*.runtimeconfig.json
+
+# Publish output
+publish/
+App.publish/
+
+# Logs and diagnostics
+*.log
+*.tlog
+*.svclog
+*.pidb
+
+# Temporary files
+*.tmp
+*.bak
+*.cache
+*.db
+*.db-shm
+*.db-wal
+
+# Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# Test results
+TestResults/
+*.coverage
+*.coveragexml
+
+# Auto-generated files
+Generated_Code/
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+.nuget/packages/
+
+# Dotnet tools
+.dotnet_tool/
+
+# Local environment
+.env
+*.local
+
+# Mac/Linux
+.DS_Store
+*.swp
+
+# Windows
+Thumbs.db
+desktop.ini
