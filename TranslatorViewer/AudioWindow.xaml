@@ -11,7 +11,7 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="debugBox"/>
+        <ListBox x:Name="debugBox" SelectionChanged="debugBox_SelectionChanged"/>
         <Grid Grid.Column="1" x:Name="PropertiesGrid">
             <StackPanel>
                 <StackPanel Orientation="Horizontal">

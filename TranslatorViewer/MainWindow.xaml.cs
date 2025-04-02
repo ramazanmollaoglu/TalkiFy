@@ -24,7 +24,7 @@ public partial class MainWindow : Window
         InitializeComponent();
         instance = this;
     }
-
+    
     
 
     public void StartPython(int inputDevice,int outputDevice,int samplerate,int channels)
@@ -79,5 +79,18 @@ public partial class MainWindow : Window
         //StartPython();
         AudioWindow newWindow = new AudioWindow();
         newWindow.Show();
+    }
+
+    private void Window_Closed(object sender, EventArgs e)
+    {
+        try
+        {
+            pythonProc.Close();
+        }
+        catch (Exception)
+        {
+
+        }
+
     }
 }

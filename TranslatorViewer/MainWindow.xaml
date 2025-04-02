@@ -10,7 +10,7 @@
         Background="Transparent"
         Topmost="True"
         ResizeMode="NoResize"
-        Loaded="Window_Loaded"
+        Loaded="Window_Loaded" Closed="Window_Closed"
         Title="MainWindow" Height="450" Width="800">
     <Grid >
         <Image HorizontalAlignment="Center" Source="/Images/Back.png" 

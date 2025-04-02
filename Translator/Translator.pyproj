@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>aa334d4b-9ec0-4d32-8f4f-81bcf407f138</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Translator.py</StartupFile>
+    <StartupFile>getdevice.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>

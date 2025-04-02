@@ -12,6 +12,7 @@ import win32security
 import subprocess
 import argparse
 import sys
+from deep_translator import GoogleTranslator
 # Cihaz indexleri
 INPUT_DEVICE_INDEX = 1  # CABLE Output
 OUTPUT_DEVICE_INDEX = 10  # Huawei FreeBuds
@@ -83,9 +84,9 @@ class AudioProcessor:
                         result = model.transcribe(temp_path, fp16=torch.cuda.is_available())
                         #result_tr = model.transcribe(temp_path, task="translate", fp16=torch.cuda.is_available(), language="tr")
                         text = result["text"].strip()
-                        #text_tr = result_tr["text"].strip()
+                        text_tr = GoogleTranslator(source='en', target='tr').translate(text)
                         print("#eng:", text if text else "Eng Algılanmadı")
-                        #print("#tr:", text_tr if text_tr else "Tr Algılanmadı")
+                        print("#tr:", text_tr if text_tr else "Tr Algılanmadı")
                     except Exception as e:
                         print("Transkripsiyon hatası:", e)
                     finally:

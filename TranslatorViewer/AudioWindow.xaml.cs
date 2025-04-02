@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Printing;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,6 +21,9 @@ namespace TranslatorViewer
     public partial class AudioWindow : Window
     {
         AudioController audioController;
+        private List<AudioDevice> selectedFilteredInput;
+        private List<AudioDevice> selectedFilteredOutput;
+        private bool ComboboxWork = false;
         public AudioWindow()
         {
             InitializeComponent();
@@ -34,6 +38,8 @@ namespace TranslatorViewer
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            ComboboxWork = true;
+
             List<AudioDevice> filteredInput = audioController.AllDevices.Where(x => x.Name.ToLower().Contains("cable") && x.Channels >= 2 && x.SampleRate == Convert.ToInt32(BaudRateBox.SelectedItem) && Direction.Input == x.direction).ToList();
             List<AudioDevice> filteredOutput = audioController.AllDevices.Where(x => x.Name.ToLower().Contains("free") && x.Channels >= 2 && x.SampleRate == Convert.ToInt32(BaudRateBox.SelectedItem) && Direction.Output == x.direction).ToList();
             debugBox.Items.Clear();
@@ -47,6 +53,10 @@ namespace TranslatorViewer
             {
                 debugBox.Items.Add($"{filteredOutput[i].Index}---{filteredOutput[i].Name}-{filteredOutput[i].Channels}");
             }
+            selectedFilteredInput = filteredInput;
+            selectedFilteredOutput = filteredOutput;
+            ComboboxWork = false;
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -62,6 +72,24 @@ namespace TranslatorViewer
             catch (Exception)
             {
                 MessageBox.Show("Please control all values");
+            }
+        }
+
+        private void debugBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(ComboboxWork || debugBox.SelectedIndex == 0 || debugBox.SelectedIndex == (selectedFilteredInput.Count+1))
+            {
+                return;
+            }
+            else if(debugBox.SelectedIndex <= selectedFilteredInput.Count)
+            {
+                InputBox.Text = selectedFilteredInput[debugBox.SelectedIndex - 1].Index.ToString();
+                ChannelBox.Text = selectedFilteredInput[debugBox.SelectedIndex - 1].Channels.ToString();
+            }
+            else
+            {
+                OutputBox.Text = selectedFilteredOutput[debugBox.SelectedIndex - 2 - selectedFilteredInput.Count].Index.ToString();
+                ChannelBox.Text = selectedFilteredOutput[debugBox.SelectedIndex - 2 - selectedFilteredInput.Count].Channels.ToString();
             }
         }
     }
