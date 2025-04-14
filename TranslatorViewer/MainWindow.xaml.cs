@@ -51,7 +51,15 @@ public partial class MainWindow : Window
             if (!string.IsNullOrWhiteSpace(e.Data))
             {
                 Dispatcher.Invoke(() => {
-                    DisplayText.Text = e.Data;
+                    if(e.Data.Contains("#tr:"))
+                    {
+                        DisplayText.Text += $"\n\n{e.Data}";
+                    }
+                    else
+                    {
+                        DisplayText.Text = e.Data;
+                    }
+                        
                 });
             }
         };
@@ -85,11 +93,29 @@ public partial class MainWindow : Window
     {
         try
         {
-            pythonProc.Close();
-        }
-        catch (Exception)
-        {
+            if (pythonProc != null && !pythonProc.HasExited)
+            {
+                pythonProc.Kill();     // python.exe'yi öldürür
+                pythonProc.Dispose();  // kaynakları temizler
+            }
+            var pythonProcesses = Process.GetProcessesByName("python");
 
+            foreach (var proc in pythonProcesses)
+            {
+                try
+                {
+                    Console.WriteLine($"Kapatılıyor: PID {proc.Id} - {proc.ProcessName}");
+                    proc.Kill();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Hata: {ex.Message}");
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show("Python kapatılırken hata: " + ex.Message);
         }
 
     }
